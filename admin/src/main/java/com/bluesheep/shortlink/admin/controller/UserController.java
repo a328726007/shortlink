@@ -1,5 +1,8 @@
 package com.bluesheep.shortlink.admin.controller;
 
+import com.bluesheep.shortlink.admin.common.convention.result.Result;
+import com.bluesheep.shortlink.admin.common.convention.result.Results;
+import com.bluesheep.shortlink.admin.common.enums.UserErrorCode;
 import com.bluesheep.shortlink.admin.remote.dto.resp.UserRespDTO;
 import com.bluesheep.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +23,12 @@ public class UserController {
      * 根据用户名获取用户信息
      */
     @GetMapping("/api/shortlink/v1/user/{username}")
-    UserRespDTO getUserByUsername(@PathVariable("username") String username) {
-        return userService.getUserByUsername(username);
+    Result<UserRespDTO> getUserByUsername(@PathVariable("username") String username) {
+        UserRespDTO result = userService.getUserByUsername(username);
+        if(result == null){
+            return new Result<UserRespDTO>().setCode(UserErrorCode.USER_NOT_EXIST.code()).setMessage(UserErrorCode.USER_NOT_EXIST.message());
+        }else{
+            return Results.success(result);
+        }
     }
 }
