@@ -1,7 +1,5 @@
 package com.bluesheep.shortlink.admin.remote.dto.resp;
 
-import com.bluesheep.shortlink.admin.common.serialize.PhoneDesensitizationSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 /**
@@ -9,7 +7,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserRespDTO {
+public class UserActualRespDTO {
 
     /**
      * ID
@@ -29,7 +27,6 @@ public class UserRespDTO {
     /**
      * 手机号
      */
-    @JsonSerialize(using = PhoneDesensitizationSerializer.class)
     private String phone;
 
     /**
@@ -38,3 +35,4 @@ public class UserRespDTO {
     private String mail;
 
 }
+
