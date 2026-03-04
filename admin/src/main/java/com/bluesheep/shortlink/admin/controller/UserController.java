@@ -75,10 +75,9 @@ public class UserController {
         // 写入数据
         writer.write(shortLinks, true);
         
-        // 输出到响应流
+        // 输出到响应流 (flush with autoClose=true will close the writer)
         ServletOutputStream out = response.getOutputStream();
         writer.flush(out, true);
-        writer.close();
     }
 
 }
